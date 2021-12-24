@@ -2,37 +2,34 @@
 
 class User {
   constructor(income) {
-    this.expenses = {
-      loansOrDebt: {
+    this.expenses = [
+{      loansOrDebt: {
         mortgageOrRent: 0,
         creditCards: 0,
         homeEquityLoan: 0,
         carLoan: 0,
         studentLoan: 0,
-      },
-      utilities: {
+      }},
+      {utilities: {
         gasOrOil: 0,
         electricity: 0,
         telephone: 0,
         waterAndSewer: 0,
-        total: 0
-      },
-      insurancePremiums: {
+      }},
+      {insurancePremiums: {
         life: 0,
         auto: 0,
         home: 0,
         health: 0,
         longTermCare: 0,
-        total: 0
-      },
-      savingsAndInvestments: {
+      }},
+      {savingsAndInvestments: {
         emergencyFund: 0,
         savings: 0,
         investments: 0,
         retirement: 0,
-        total: 0
-      },
-      miscellaneous: {
+      }},
+      {miscellaneous: {
         groceries: 0,
         childCare: 0,
         vacation: 0,
@@ -42,59 +39,13 @@ class User {
         commuting: 0,
         charity: 0,
         outOfPocketMedical: 0,
-        total: 0
-      },
-    };
+      }},
+    ];
     this.income = {
       paycheck: income,
       other: 0,
     };
     this.percentageGoal = {
-      loansOrDebt: 0,
-      utilities: 0,
-      insurance: 0,
-      savings: 0,
-      miscellaneous: 0,
-    };
-    this.percentageExpenses = {
-      transportation: {
-        low: 10,
-        high: 15,
-      },
-      savings: {
-        low: 10,
-        high: 15,
-      },
-      food: {
-        low: 10,
-        high: 15,
-      },
-      insurance: {
-        low: 10,
-        high: 20,
-      },
-      housing: {
-        low: 25,
-        high: 35,
-      },
-      clothing: {
-        low: 5,
-        high: 5,
-      },
-      personal: {
-        low: 5,
-        high: 10,
-      },
-      entertainment: {
-        low: 5,
-        high: 10,
-      },
-      utilities: {
-        low: 5,
-        high: 10,
-      },
-    };
-    this.actualExpensePercentage = {
       transportation: 0,
       savings: 0,
       food: 0,
@@ -104,26 +55,52 @@ class User {
       personal: 0,
       entertainment: 0,
       utilities: 0,
+      total: {
+        loansOrDebt: 0,
+        utilities: 15,
+        insurance: 15,
+        savings: 0,
+        miscellaneous: 0,
+      }
     };
+    this.totalExpenses = {
+      loansOrDebt: 0,
+      utilities: 0,
+      insurance: 0,
+      savingsAndInvestments: 0,
+      miscellaneous: 0,
+    }
   }
-
-// function that will generate goals based on percentages given using income and this.percentageGoal
-  goalGenerater = () => {
-    //   for (let expense of this.percentageExpenses) {
-    //       console.log(this.percentageExpenses)
-    //       console.log(expense)
-    //   }
-
-    console.log(typeof(this.percentageExpenses))
-  }
-
 
 // function that will populate expenses
+    generateExpenses() {
+      this.expenses.forEach((expense) => {
+        for (const [category, subCat] of Object.entries(expense)) {
+          for (const [subCatExpense, value] of Object.entries(subCat)) {
+            expense[category][subCatExpense] = 1
+            // console.log()
+            // good point to stop here I have available every expense
+            // changes values to 1
+            
+          }
+        }
+      })
+
+      console.log(this.expenses)
+    }
 // function that will take expenses and return this.actualExpensePercentage
 // function that will show how far under or over budget you are and whether you should reduce some expense or increase another to reach that 0 goal
+  }
 
+let c = new User(885.4)
+c.generateExpenses()
 
-}
+// 386 CAR Loan
+// 45 CFCU Card
+// 25 CapitalOne CC
+// 75 Cell
+// 50 Gas
+// 194 Internet + Cable
+// 25 Paypal
 
-let c = new User(442.70)
-c.goalGenerater()
+// 184 55 DUE 28TH ASK TO EXTEND THE GRACE DAYS SUE TACTET DEBBIE
